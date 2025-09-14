@@ -1,0 +1,270 @@
+<portfolio html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alina Pradhan | Cosmic Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    /* Starfield canvas */
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -3;
+    }
+
+    /* Overlay for readability */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -2;
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 1rem 3rem;
+      animation: fadeIn 2s ease-out;
+    }
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg, #ffdd57, #76e2f4, #d16ba5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+      animation: glowPulse 3s infinite alternate;
+    }
+    header p {
+      font-size: 1.3rem;
+      color: #ddd;
+      margin-top: 1rem;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      transform: translateY(50px);
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards;
+    }
+    section:nth-child(even) { animation-delay: 0.5s; }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+      color: #76e2f4;
+      text-shadow: 0 0 15px #76e2f4;
+      animation: glowPulse 4s infinite alternate;
+    }
+
+    ul { list-style: none; }
+    ul li {
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    a { color: #ffdd57; text-decoration: none; }
+    a:hover { color: #fff176; }
+
+    footer {
+      text-align: center;
+      padding: 4rem 1rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Planets (NASA images) */
+    .planet {
+      position: fixed;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+      animation: float 20s ease-in-out infinite alternate;
+      z-index: -1;
+      filter: drop-shadow(0 0 20px rgba(255,255,255,0.4));
+      transition: transform 0.2s ease-out;
+    }
+    .earth {
+      width: 180px; height: 180px;
+      background-image: url("https://www.nasa.gov/sites/default/files/thumbnails/image/as17-148-22727.jpg");
+      bottom: 10%; left: 5%;
+    }
+    .jupiter {
+      width: 220px; height: 220px;
+      background-image: url("https://www.nasa.gov/sites/default/files/thumbnails/image/pia22946-16.jpg");
+      top: 15%; right: 8%;
+      animation-duration: 35s;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(40px) rotate(360deg); }
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px #76e2f4; }
+      to { text-shadow: 0 0 30px #d16ba5, 0 0 50px #ffdd57; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="overlay"></div>
+
+  <!-- Floating planets -->
+  <div class="planet earth"></div>
+  <div class="planet jupiter"></div>
+
+  <header>
+    <h1>🌌 Namaste, Hola, Ciao, Marhaba, Privet! I'm Alina Pradhan 👋</h1>
+    <p>AI Engineer | Explorer of Algorithms for the Goodness of Mankind</p>
+  </header>
+
+  <section>
+    <h2>🚀 About Me</h2>
+    <ul>
+      <li>🌱 I’m currently learning and exploring new technologies.</li>
+      <li>🤝 I’m looking to collaborate on open-source projects.</li>
+      <li>💡 Ask me about anything related to Data Science and AI/ML.</li>
+      <li>📫 How to reach me: <a href="mailto:your@email.com">Email</a></li>
+      <li>⚡ Fun fact: I love volleyball, swimming, athletics, and deadlifting.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🏆 Achievements</h2>
+    <ul>
+      <li>Hackathon – VizQuest 3.0 Project secured All India Rank 5th in data visualization (IIM Nagpur).</li>
+      <li>Presented Research Paper in National Conference: ANNs in prediction and detection of cyberattacks in smart grids.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🌱 Q&A</h2>
+    <p><strong>Q:</strong> Do we need to heat Mars from bottom to support life?</p>
+    <p><strong>A:</strong> We don’t need to heat Mars from the bottom. The focus should be on atmospheric engineering, surface warming, and habitat design.</p>
+  </section>
+
+  <footer>
+    <p>Made with 💜 under the cosmos | © 2025 Alina Pradhan</p>
+  </footer>
+
+  <script>
+    /* Starfield with shooting stars */
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stars = [];
+    let shootingStars = [];
+
+    class Star {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.radius = Math.random() * 1.5;
+        this.speed = Math.random() * 0.3;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "white";
+        ctx.fill();
+      }
+      update() {
+        this.y += this.speed;
+        if (this.y > canvas.height) {
+          this.y = 0;
+          this.x = Math.random() * canvas.width;
+        }
+        this.draw();
+      }
+    }
+
+    class ShootingStar {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = 0;
+        this.length = Math.random() * 80 + 50;
+        this.speed = Math.random() * 10 + 6;
+        this.angle = Math.PI / 4;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x - this.length * Math.cos(this.angle),
+                   this.y - this.length * Math.sin(this.angle));
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+      update() {
+        this.x += this.speed;
+        this.y += this.speed;
+        this.draw();
+      }
+    }
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < 200; i++) {
+        stars.push(new Star());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => star.update());
+
+      if (Math.random() < 0.002) {
+        shootingStars.push(new ShootingStar());
+      }
+      shootingStars.forEach((s, i) => {
+        s.update();
+        if (s.x > canvas.width || s.y > canvas.height) shootingStars.splice(i, 1);
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    initStars();
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initStars();
+    });
+
+    /* Parallax planets */
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+      document.querySelectorAll(".planet").forEach(p => {
+        p.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
+
+
